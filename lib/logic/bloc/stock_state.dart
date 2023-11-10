@@ -13,7 +13,7 @@ final class StockInitial extends StockState {}
 final class StockListenerState extends StockState {}
 
 final class StockSearchState extends StockState {
-  final List<Stock>? stocks;
+  final List<NewStock>? stocks;
   final SearchStatus status;
   StockSearchState(this.status, {this.stocks});
 }

@@ -4,7 +4,7 @@ part of 'watchlist_bloc.dart';
 sealed class WatchlistEvent {}
 
 class WatchlistAddEvent extends WatchlistEvent {
-  final Stock stock;
+  final NewStock stock;
   WatchlistAddEvent(this.stock);
 }
 

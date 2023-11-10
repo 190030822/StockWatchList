@@ -9,7 +9,7 @@ final class WatchlistInitial extends WatchlistState {}
 
 final class WatchListStocksState extends WatchlistState {
   final WatchListStatus watchListStatus;
-  final List<Stock> watchListStocks;
+  final List<NewStock> watchListStocks;
   WatchListStocksState(this.watchListStatus, this.watchListStocks);
 }
 

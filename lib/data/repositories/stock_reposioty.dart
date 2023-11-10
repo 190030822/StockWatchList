@@ -1,9 +1,18 @@
 import 'package:stock_watchlist/core/constannts.dart';
+import 'package:stock_watchlist/data/models/new_stock.dart';
 import 'package:stock_watchlist/data/models/stock.dart';
 import 'package:stock_watchlist/data/services/stock_service.dart';
 
 class StockRepository {
 
+
+  Future<List<NewStock>> searchNewStocksByQuery(String query) async {
+    List<NewStock> newStocks = await getStocksBySearch(query);
+    return newStocks;
+  }
+
+
+  
   Future<List<Stock>> searchStocksByQuery(String query) async {
     List<String> companies = await searchStocks(query);
     List<Stock> stocks = [];

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:stock_watchlist/data/models/new_stock.dart';
 import 'package:stock_watchlist/data/models/stock.dart';
 import 'package:stock_watchlist/data/repositories/watchlist_repository.dart';
 
@@ -17,12 +18,12 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
   }
 
   Future<void> watchListAddEvent(WatchlistAddEvent stockAddEvent, Emitter emit) async {
-    List<Stock> watchListStocks = _watchListRepository.addStock(stockAddEvent.stock);
+    List<NewStock> watchListStocks = _watchListRepository.addStock(stockAddEvent.stock);
     emit(WatchListStocksState(WatchListStatus.notEmpty, watchListStocks));
   }
 
   Future<void> watchListRemoveEvent(WatchlistRemoveEvent stockRemoveEvent, Emitter emit) async {
-    List<Stock> watchListStocks = _watchListRepository.removeStock(stockRemoveEvent.companyName);
+    List<NewStock> watchListStocks = _watchListRepository.removeStock(stockRemoveEvent.companyName);
     if (watchListStocks.isEmpty) {
       emit(WatchListStocksState(WatchListStatus.empty, watchListStocks));
     } else {

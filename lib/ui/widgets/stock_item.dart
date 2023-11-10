@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stock_watchlist/data/models/new_stock.dart';
 import 'package:stock_watchlist/data/models/stock.dart';
 import 'package:stock_watchlist/logic/bloc/watchlist_bloc.dart';
 
 class StockItem extends StatefulWidget {
-  final Stock stock;
+  final NewStock stock;
   const StockItem(this.stock, {super.key});
 
   @override
@@ -30,7 +31,7 @@ class _StockItemState extends State<StockItem> {
             borderRadius: BorderRadius.circular(10)
           ),
           leading: isLimitExceeded ? const Icon(Icons.error_outline_sharp, color: Colors.red) : null,
-          title: isLimitExceeded ?  Text(widget.stock.stockPrice) : Text("${widget.stock.companyName} (Rs ${widget.stock.stockPrice})"),
+          title: isLimitExceeded ?  Text(widget.stock.companyName) : Text("${widget.stock.companyName} (Rs ${widget.stock.symbol})"),
           trailing:  InkWell(
             onTap: () {
               if (isAdded || isLimitExceeded) {

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:stock_watchlist/core/routes/app_route.dart';
 import 'package:stock_watchlist/core/themes/app_theme.dart';
+import 'package:stock_watchlist/data/models/new_stock.dart';
 import 'package:stock_watchlist/data/models/stock.dart';
 import 'package:stock_watchlist/data/repositories/stock_reposioty.dart';
 import 'package:stock_watchlist/data/repositories/watchlist_repository.dart';
@@ -14,9 +15,11 @@ void main() async {
   
   await Hive.initFlutter();
   Hive.registerAdapter(StockAdapter());
+  Hive.registerAdapter(NewStockAdapter());
   final appDocumentDirectory = await path_provider.getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
   await Hive.openBox('WatchList');
+  await Hive.openBox('NewWatchList');
   runApp( MainApp());
 }
 

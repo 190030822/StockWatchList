@@ -1,27 +1,29 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:stock_watchlist/data/models/new_stock.dart';
 import 'package:stock_watchlist/data/models/stock.dart';
 
 class WatchListRepository {
 
   final _watchListBox = Hive.box('WatchList');
+  final _newWatchListBox = Hive.box('NewWatchList');
 
-  List<Stock> addStock(Stock stock) {
-    _watchListBox.put(stock.companyName, stock);
+  List<NewStock> addStock(NewStock stock) {
+    _newWatchListBox.put(stock.companyName, stock);
     return fetchStocks();
 
   }
 
-  List<Stock> removeStock(String companyName) {
-    _watchListBox.delete(companyName);
+  List<NewStock> removeStock(String companyName) {
+    _newWatchListBox.delete(companyName);
     return fetchStocks();
   }
 
 
-  List<Stock> convertToStockType(List<dynamic> stockValues) {
-    return stockValues.map((e) => e as Stock).toList();
+  List<NewStock> convertToStockType(List<dynamic> stockValues) {
+    return stockValues.map((e) => e as NewStock).toList();
   }
 
-  List<Stock> fetchStocks() {
-    return convertToStockType(_watchListBox.values.toList());
+  List<NewStock> fetchStocks() {
+    return convertToStockType(_newWatchListBox.values.toList());
   }
 }
